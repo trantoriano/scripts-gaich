@@ -1,3 +1,18 @@
+# Análisis Exploratorio
+# Frecuencia de reproducción: Número de reproducciones por mes, día de la semana y hora del día.  
+# Top artistas y canciones: Los más escuchados y los que más tiempo han ocupado en tu historial.  
+# Distribución de escucha: ¿Eres más nocturno o diurno?  
+
+# Validación de hábitos musicales
+# Canciones más repetidas: Identificar cuáles tienes en loop constantemente.  
+# Descubrimiento de música nueva: Saber cuándo agregas nuevas canciones a tu historial.  
+# Diversidad de escucha: ¿Repites los mismos artistas o exploras nueva música?  
+
+# Visualizaciones en Python
+# Gráfica de evolución de artistas** → Cómo han cambiado tus preferencias a lo largo del tiempo.  
+# Tendencias de reproducción** → Análisis temporal de escucha por mes y hora del día.  
+# Gráfica de canciones nuevas vs repetidas** → Cuánto tiempo exploras música nueva vs. cuánto repites canciones.  
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -8,37 +23,7 @@ files = ["StreamingHistory_music_0.json", "StreamingHistory_music_1.json", "Stre
 df_list = [pd.read_json(file) for file in files]
 df = pd.concat(df_list, ignore_index=True)
 
-# Revisar las primeras filas para verificar que la columna exista
-print(df.head())  # Esto nos ayuda a confirmar que 'timestamp' está en los datos
-
-df['endTime'] = pd.to_datetime(df['endTime'])
-df['day_of_week'] = df['endTime'].dt.day_name()
-df['hour'] = df['endTime'].dt.hour  # Extraer la hora
-
-# Agrupar por día de la semana
-daily_counts = df['day_of_week'].value_counts()
-
-# Agrupar por hora del día
-hourly_counts = df['hour'].value_counts().sort_index()
-
-# Gráfica de días de la semana
-plt.figure(figsize=(10,5))
-daily_counts.plot(kind='bar', color='skyblue')
-plt.title("Frecuencia de escucha por día de la semana")
-plt.xlabel("Día")
-plt.ylabel("Número de reproducciones")
-plt.show()
-
-# Gráfica de horas del día
-plt.figure(figsize=(10,5))
-hourly_counts.plot(kind='bar', color='lightcoral')
-plt.title("Frecuencia de escucha por hora del día")
-plt.xlabel("Hora")
-plt.ylabel("Número de reproducciones")
-plt.show()
-
-
-
-
-
+# Mostrar información general del dataset
+print(df.info())
+print(df.head())
 
