@@ -6,6 +6,8 @@
 # Tendencias de reproducción** → Análisis temporal de escucha por mes y hora del día.
 # Gráfica de canciones nuevas vs repetidas** → Cuánto tiempo exploras música nueva vs. cuánto repites canciones.
 
+#Código generado con Copilot
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
